@@ -1,4 +1,3 @@
-README for Dathena Technical Test (best read in full screen mode)
 Author: Konrad Eilers
 Date: 16/Nov/2019
 
