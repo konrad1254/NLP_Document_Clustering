@@ -34,39 +34,38 @@ Structure of code:
 	- user inputs are defined here
 
 Folder Structure:
-	- data: pre-loaded dataset
-	- program: all required programs / modules
-	- results: empty folder where results will be saved
+- data: pre-loaded dataset
+- program: all required programs / modules
+- results: empty folder where results will be saved
 		
 Important notes / assumptions:
-	- Code requires stable internet connection
-	- I am using Python 3.3+. Hence,  __init__.py is not required
-	- For improved readability, warnings are not printed
-	- Wikipedia extraction: The code extracts 200 summaries per language to fulfil the requirements of the exercise. In the next step, however, the code
-	"forgets" the true labels and uses langdetect to detect the language of the document
-	- Language detection: 
-		- In order to perform well in clustering, the code removes data from languages with less than 10 occurrences per language.
-		- Looking at multilingual document clustering research (DOI: 10.3115/v1/D14-1065), I believe the best method would be to translate all different languages back to English. This would capture the fact that documents may be about the same thing in different languages. However, I couldn't find a free, stable translation API that allowed for such services (TextBlob & Google Translate (free version) both broke down).
-	- TfidfVectorizer:
-		- I chose this simple NLP over more complex word embeddings (i.e. Word2Vec) for two reasons. First, this method is less memory intensive. As I am working on my own computer, this is an important criteria. Second, I am less interested in understanding the relationship between each word, but more in the overall context of the document. For this, I believe looking at the inverse document frequency should be sufficient.
-	- Method of clustering
-		- There is a plethora of different clustering algorithms (K-Means, Affinity Propagation, Mean Shift,...)
-		- This algorithm runs on K-means. There are obvious disadvantage (mainly we need to specify the number of clusters). However, it is very efficient and that is why I chose it
+- Code requires stable internet connection
+- For improved readability, warnings are not printed
+- Wikipedia extraction: The code extracts 200 summaries per language to fulfil the requirements of the exercise. In the next step, however, the code
+"forgets" the true labels and uses langdetect to detect the language of the document
+- Language detection: 
+	- In order to perform well in clustering, the code removes data from languages with less than 10 occurrences per language.
+	- Looking at multilingual document clustering research (DOI: 10.3115/v1/D14-1065), I believe the best method would be to translate all different languages back to English. This would capture the fact that documents may be about the same thing in different languages. However, I couldn't find a free, stable translation API that allowed for such services (TextBlob & Google Translate (free version) both broke down).
+- TfidfVectorizer:
+	- I chose this simple NLP over more complex word embeddings (i.e. Word2Vec) for two reasons. First, this method is less memory intensive. As I am working on my own computer, this is an important criteria. Second, I am less interested in understanding the relationship between each word, but more in the overall context of the document. For this, I believe looking at the inverse document frequency should be sufficient.
+- Method of clustering
+	- There is a plethora of different clustering algorithms (K-Means, Affinity Propagation, Mean Shift,...)
+	- This algorithm runs on K-means. There are obvious disadvantage (mainly we need to specify the number of clusters). However, it is very efficient and that is why I chose it
 	- Method of deciding the optimal number of clusters: based on Silhouette Score (https://en.wikipedia.org/wiki/Silhouette_(clustering))
 	
 Output: 
-	- Pickle file: Dictionary with DataFrame per language. The dictionary includes Title, Text, Language_predict and Labels as columns
-	- PCA visualisation: image of labelled scatter plot in 2 dimensions 
-	- Hierarchical clustering visualisation 
+- Pickle file: Dictionary with DataFrame per language. The dictionary includes Title, Text, Language_predict and Labels as columns
+- PCA visualisation: image of labelled scatter plot in 2 dimensions 
+- Hierarchical clustering visualisation 
 
 Conclusion:
-	- Given the randomisation underlying the extraction method, there will be inherently a low relationship between the documents
-	- Given that the algorithm does not translate back to English, the code does not pick up relationships between different languages
-	- In the next iteration, one should 
-		- replace the stemming method by lemmatisation (more accurate way of generating the root of a word based on parts-of-speech)
-		- Re-run the analysis with translated documents (via official google translate API: https://cloud.google.com/translate/docs/)
-		- Introduce word embedding (i.e. Word2Vec)
-		- Introduce different clustering mechanism (such as Affinity Propagation), where the user does not have to decide on the maximum of clusters	 
+- Given the randomisation underlying the extraction method, there will be inherently a low relationship between the documents
+- Given that the algorithm does not translate back to English, the code does not pick up relationships between different languages
+- In the next iteration, one should 
+	- replace the stemming method by lemmatisation (more accurate way of generating the root of a word based on parts-of-speech)
+	- Re-run the analysis with translated documents (via official google translate API: https://cloud.google.com/translate/docs/)
+	- Introduce word embedding (i.e. Word2Vec)
+	- Introduce different clustering mechanism (such as Affinity Propagation), where the user does not have to decide on the maximum of clusters	 
 
 Main reference articles:
 	- http://brandonrose.org/clustering
