@@ -1,23 +1,20 @@
 # NLP Document Clustering
 
 ## Author: Konrad Eilers
-## Date: 16/Nov/2019
+### Date: 16/Nov/2019
 
-Description: Automatic Document Clustering Algorithm 
+### Description: Automatic Document Clustering Algorithm 
 
-How to run the program:
-- Executing main_program.py in python
-
-Inputs required from user:
+## Inputs required from user:
 - Current working directory: The user will be asked to set the current working directory to the main folder. On my computer, for example, this would be: 
 ```/Users/konradeilers/Documents/01_Studies/04_Practice/keilers```
 - Folder directory of nltk corpora stopwords data. This is required for stop words & stemming and for eliminating languages that are not supported by nltk. On my computer, this would be: ```/Users/konradeilers/nltk_data/corpora/stopwords```
 
-Options to the user:
+## Options to the user:
 - The user can decide to run the webscraper or work with a pre-loaded dataset. As the wikipedia API is quite slow, the web scraper will take some time to run (ca. 10 min on my computer)
 - The user can decide to run the stop words & stemming process with nltk. If selected, this will cause the languages that are not supported by nltk to be excluded from the dataset 
 
-Structure of code:
+## Structure of code:
 - Main Program:
 	- This executes the automatic document clustering by extracting, translating, cleaning and clustering
 - Extraction module:
@@ -33,12 +30,12 @@ Structure of code:
 - input_ module:
 	- user inputs are defined here
 
-Folder Structure:
+## Folder Structure:
 - data: pre-loaded dataset
 - program: all required programs / modules
 - results: empty folder where results will be saved
 		
-Important notes / assumptions:
+## Important notes / assumptions:
 - Code requires stable internet connection
 - For improved readability, warnings are not printed
 - Wikipedia extraction: The code extracts 200 summaries per language to fulfil the requirements of the exercise. In the next step, however, the code
@@ -53,12 +50,12 @@ Important notes / assumptions:
 	- This algorithm runs on K-means. There are obvious disadvantage (mainly we need to specify the number of clusters). However, it is very efficient and that is why I chose it
 	- Method of deciding the optimal number of clusters: based on Silhouette Score (https://en.wikipedia.org/wiki/Silhouette_(clustering))
 	
-Output: 
+## Output: 
 - Pickle file: Dictionary with DataFrame per language. The dictionary includes Title, Text, Language_predict and Labels as columns
 - PCA visualisation: image of labelled scatter plot in 2 dimensions 
 - Hierarchical clustering visualisation 
 
-Conclusion:
+## Conclusion:
 - Given the randomisation underlying the extraction method, there will be inherently a low relationship between the documents
 - Given that the algorithm does not translate back to English, the code does not pick up relationships between different languages
 - In the next iteration, one should 
